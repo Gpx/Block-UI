@@ -1,4 +1,5 @@
 ;(function (window, document, undefined) {
+  
   window.blockUI = {}; // Library namespace
 
   var openBlocks = 0, // Counter fon open blocks
@@ -10,7 +11,7 @@
   blockDiv.style.position        = 'absolute';
   blockDiv.style.top             = '0';
   blockDiv.style.left            = '0';
-  blockDiv.style.backgroundColor = 'red';
+  blockDiv.style.backgroundColor = 'rgba(255, 0, 0, .5)';
   blockDiv.style.display         = 'none';
 
   document.body.appendChild(blockDiv);
@@ -25,10 +26,10 @@
     blockDiv.style.display = 'none';
   };
 
-  window.blockUI.unblockAll = function () {
-    /** Unblock everything */
-    openBlocks = 0;
-    hideBlockDiv();
+  // Public methods
+
+  window.blockUI.setBackground = function ( r, g, b, a ) {
+    blockDiv.style.backgroundColor = 'rgba('+r+', '+g+', '+b+', '+a+')';
   };
 
   window.blockUI.block = function () {
@@ -48,4 +49,11 @@
       hideBlockDiv();
     };
   };
+
+  window.blockUI.unblockAll = function () {
+    /** Unblock everything */
+    openBlocks = 0;
+    hideBlockDiv();
+  };
+
 })(window, window.document);
